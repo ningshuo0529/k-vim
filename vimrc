@@ -31,7 +31,7 @@ let g:mapleader = ','
 syntax on
 
 
-" install Vundle bundles
+"install Vundle bundles
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
@@ -48,7 +48,7 @@ filetype plugin indent on
 "set guifont=Monaco:h20          " 字体 && 字号
 
 " history存储容量
-set history=2000
+"set history=2000
 
 "检测文件类型
 filetype on
@@ -74,12 +74,12 @@ set noswapfile
 
 
 "create undo file
-if has('persistent_undo')
-  set undolevels=1000         " How many undos
-  set undoreload=10000        " number of lines to save for undo
-  set undofile                " So is persistent undo ...
-  set undodir=/tmp/vimundo/
-endif
+"if has('persistent_undo')
+"  set undolevels=1000         " How many undos
+"  set undoreload=10000        " number of lines to save for undo
+"  set undofile                " So is persistent undo ...
+""  set undodir=/tmp/vimundo/
+"endif
 
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 " 突出显示当前行等
@@ -93,7 +93,7 @@ set t_ti= t_te=
 
 
 "- 则点击光标不会换,用于复制
-set mouse-=a             " 鼠标暂不启用, 键盘党....
+"set mouse-=a             " 鼠标暂不启用, 键盘党....
 " set mouse=a                 " Automatically enable mouse usage
 " set mousehide               " Hide the mouse cursor while typing
 
@@ -198,20 +198,20 @@ set nrformats=
 
 
 " 相对行号      行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
-set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
+"set relativenumber number
+"au FocusLost * :set norelativenumber number
+"au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
-autocmd InsertEnter * :set norelativenumber number
-autocmd InsertLeave * :set relativenumber
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
+"autocmd InsertEnter * :set norelativenumber number
+"autocmd InsertLeave * :set relativenumber
+"function! NumberToggle()
+""  if(&relativenumber == 1)
+""    set norelativenumber number
+""  else
+""    set relativenumber
+""  endif
+"endfunc
+"nnoremap <C-n> :call NumberToggle()<cr>
 
 
 "==========================================
@@ -239,28 +239,28 @@ set formatoptions+=B
 "==========================================
 " others 其它设置
 "==========================================
-autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
+"autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
 autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux。
 
 " 自动补全配置
 "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-set completeopt=longest,menu
+"set completeopt=longest,menu
 
 " 增强模式中的命令行自动完成操作
-set wildmenu
+"set wildmenu
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc,*.class
 
 "离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 "回车即选中当前项
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
 "上下左右键的行为 会显示其他信息
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+"inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+"inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+"inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+"inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 " if this not work ,make sure .viminfo is writable for you
 if has("autocmd")
@@ -274,17 +274,17 @@ endif
 " 主要按键重定义
 
 " 关闭方向键, 强迫自己用 hjkl
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
+"map <Left> <h>
+"map <Right> <l>
+"map <Up> <k>
+"map <Down> <j>
 
 "Treat long lines as break lines (useful when moving around in them)
 "se swap之后，同物理行上线直接跳
-nnoremap k gk
-nnoremap gk k
-nnoremap j gj
-nnoremap gj j
+"nnoremap k gk
+"nnoremap gk k
+"nnoremap j gj
+"nnoremap gj j
 
 " F1 - F6 设置
 " F1 废弃这个键,防止调出系统帮助
@@ -309,8 +309,8 @@ function! HideNumber()
   set number?
 endfunc
 nnoremap <F2> :call HideNumber()<CR>
-nnoremap <F3> :set list! list?<CR>
-nnoremap <F4> :set wrap! wrap?<CR>
+"nnoremap <F3> :set list! list?<CR>
+"nnoremap <F4> :set wrap! wrap?<CR>
               "set paste
 set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
                                 "    paste mode, where you can paste mass data
@@ -319,7 +319,7 @@ set pastetoggle=<F5>            "    when in insert mode, press <F5> to go to
 " disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
 
-nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+"nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 
 "Smart way to move between windows 分屏窗口移动
@@ -349,23 +349,19 @@ cnoremap <C-e> <End>
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 " 进入搜索Use sane regexes"
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 
 "Keep search pattern at the center of the screen."
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
+"nnoremap <silent> n nzz
+"nnoremap <silent> N Nzz
+"nnoremap <silent> * *zz
+"nnoremap <silent> # #zz
+"nnoremap <silent> g* g*zz
 
 " switch # *
 nnoremap # *
 nnoremap * #
-
-" for # indent, python文件中输入新行时#号注释不切回行首
-autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
-
 
 " 去掉搜索高亮
 noremap <silent><leader>/ :nohls<CR>
@@ -375,10 +371,10 @@ noremap <silent><leader>/ :nohls<CR>
 "Use arrow key to change buffer"
 " TODO: 如何跳转到确定的buffer?
 " :b1 :b2   :bf :bl
-nnoremap [b :bprevious<cr>
-nnoremap ]b :bnext<cr>
-noremap <left> :bp<CR>
-noremap <right> :bn<CR>
+"nnoremap [b :bprevious<cr>
+"nnoremap ]b :bnext<cr>
+"noremap <left> :bp<CR>
+"noremap <right> :bn<CR>
 
 
 " tab 操作
@@ -411,52 +407,52 @@ inoremap <C-t>     <Esc>:tabnew<CR>
 " nnoremap <C-Right> :tabnext<CR>
 
 " normal模式下切换到确切的tab
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
+"noremap <leader>1 1gt
+"noremap <leader>2 2gt
+"noremap <leader>3 3gt
+"noremap <leader>4 4gt
+"noremap <leader>5 5gt
+"noremap <leader>6 6gt
+"noremap <leader>7 7gt
+"noremap <leader>8 8gt
+"noremap <leader>9 9gt
+"noremap <leader>0 :tablast<cr>
 
 " Toggles between the active and last active tab "
 " The first tab is always 1 "
-let g:last_active_tab = 1
+"let g:last_active_tab = 1
 " nnoremap <leader>gt :execute 'tabnext ' . g:last_active_tab<cr>
 " nnoremap <silent> <c-o> :execute 'tabnext ' . g:last_active_tab<cr>
 " vnoremap <silent> <c-o> :execute 'tabnext ' . g:last_active_tab<cr>
-nnoremap <silent> <leader>tt :execute 'tabnext ' . g:last_active_tab<cr>
-vnoremap <silent> <leader>tt :execute 'tabnext ' . g:last_active_tab<cr>
-autocmd TabLeave * let g:last_active_tab = tabpagenr()
+"nnoremap <silent> <leader>tt :execute 'tabnext ' . g:last_active_tab<cr>
+"vnoremap <silent> <leader>tt :execute 'tabnext ' . g:last_active_tab<cr>
+"autocmd TabLeave * let g:last_active_tab = tabpagenr()
 
 
 " ------- 选中及操作改键
 
 "Reselect visual block after indent/outdent.调整缩进后自动选中，方便再次操作
-vnoremap < <gv
-vnoremap > >gv
+"vnoremap < <gv
+"vnoremap > >gv
 
 " y$ -> Y Make Y behave like other capitals
-map Y y$
+"map Y y$
 
 " select all
-map <Leader>sa ggVG"
+"map <Leader>sa ggVG"
 
 " select block
-nnoremap <leader>v V`}
+"nnoremap <leader>v V`}
 
 " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
 
 " kj 替换 Esc
-inoremap kj <Esc>
+"inoremap kj <Esc>
 
 " 滚动Speed up scrolling of the viewport slightly
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y>
+"nnoremap <C-e> 2<C-e>
+"nnoremap <C-y> 2<C-y>
 
 
 "Jump to start and end of line using the home row keys
@@ -465,13 +461,13 @@ nnoremap <C-y> 2<C-y>
 "nmap T O<ESC>j
 
 " Quickly close the current window
-nnoremap <leader>q :q<CR>
+"nnoremap <leader>q :q<CR>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
 " column, so swap them
-nnoremap ' `
-nnoremap ` '
+"nnoremap ' `
+"nnoremap ` '
 
 " remap U to <C-r> for easier redo
 nnoremap U <C-r>
@@ -517,50 +513,8 @@ function! AutoSetFileHead()
     normal o
 endfunc
 
-"C，C++, shell, python, javascript, ruby...等按F10运行
-map <F10> :call CompileRun()<CR>
-func! CompileRun()
-    exec "w"
-    if &filetype == 'c'
-        exec "!g++ % -o %<"
-        exec "!time ./%<"
-        exec "!rm ./%<"
-    elseif &filetype == 'cpp'
-        exec "!g++ % -o %<"
-        exec "!time ./%<"
-        exec "!rm ./%<"
-    elseif &filetype == 'java'
-        exec "!javac %"
-        exec "!time java %<"
-        exec "!rm ./%<.class"
-    elseif &filetype == 'sh'
-        exec "!time bash %"
-    elseif &filetype == 'python'
-        exec "!time python %"
-    elseif &filetype == 'html'
-        exec "!chrome % &"
-    elseif &filetype == 'go'
-        exec "!go build %<"
-        exec "!time go run %"
-    elseif &filetype == 'mkd' "MarkDown 解决方案为VIM + Chrome浏览器的MarkDown Preview Plus插件，保存后实时预览
-        exec "!chrome % &"
-    elseif &filetype == 'javascript'
-        exec "!time node %"
-    elseif &filetype == 'coffee'
-        exec "!time coffee %"
-    elseif &filetype == 'ruby'
-        exec "!time ruby %"
-    endif
-endfunc
-
-" set some keyword to highlight
-if has("autocmd")
-  " Highlight TODO, FIXME, NOTE, etc.
-  if v:version > 701
-    autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
-    autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\|NOTICE\)')
-  endif
-endif
+" F10 to run python script
+nnoremap <buffer> <F10> :exec '!python' shellescape(@%, 1)<cr>
 
 "==========================================
 " Theme Settings  主题设置
@@ -570,7 +524,7 @@ endif
 if has("gui_running")
     set guifont=Monaco:h14
     if has("gui_gtk2")   "GTK2
-        set guifont=Monaco\ 12,Monospace\ 12
+        set guifont=Monaco\ 12, Monospace\ 12
     endif
     set guioptions-=T
     set guioptions+=e
@@ -585,12 +539,10 @@ endif
 
 " theme主题
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 set t_Co=256
 
-" colorscheme molokai
-" let g:molokai_original = 1
-" let g:rehash256 = 1
+colorscheme molokai
 "colorscheme desert
 
 "设置标记一列的背景颜色和数字一行颜色一致
@@ -608,4 +560,202 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
+" Python indent file
+" Language:	    Python
+" Maintainer:	    Eric Mc Sween <em@tomcom.de>
+" Original Author:  David Bustos <bustos@caltech.edu> 
+" Last Change:      2004 Jun 07
 
+" Only load this indent file when no other was loaded.
+if exists("b:did_indent")
+    finish
+endif
+let b:did_indent = 1
+
+setlocal expandtab
+setlocal nolisp
+setlocal autoindent
+setlocal indentexpr=GetPythonIndent(v:lnum)
+setlocal indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except
+
+let s:maxoff = 50
+
+" Find backwards the closest open parenthesis/bracket/brace.
+function! s:SearchParensPair()
+    let line = line('.')
+    let col = col('.')
+    
+    " Skip strings and comments and don't look too far
+    let skip = "line('.') < " . (line - s:maxoff) . " ? dummy :" .
+                \ 'synIDattr(synID(line("."), col("."), 0), "name") =~? ' .
+                \ '"string\\|comment"'
+
+    " Search for parentheses
+    call cursor(line, col)
+    let parlnum = searchpair('(', '', ')', 'bW', skip)
+    let parcol = col('.')
+
+    " Search for brackets
+    call cursor(line, col)
+    let par2lnum = searchpair('\[', '', '\]', 'bW', skip)
+    let par2col = col('.')
+
+    " Search for braces
+    call cursor(line, col)
+    let par3lnum = searchpair('{', '', '}', 'bW', skip)
+    let par3col = col('.')
+
+    " Get the closest match
+    if par2lnum > parlnum || (par2lnum == parlnum && par2col > parcol)
+        let parlnum = par2lnum
+        let parcol = par2col
+    endif
+    if par3lnum > parlnum || (par3lnum == parlnum && par3col > parcol)
+        let parlnum = par3lnum
+        let parcol = par3col
+    endif 
+
+    " Put the cursor on the match
+    if parlnum > 0
+        call cursor(parlnum, parcol)
+    endif
+    return parlnum
+endfunction
+
+" Find the start of a multi-line statement
+function! s:StatementStart(lnum)
+    let lnum = a:lnum
+    while 1
+        if getline(lnum - 1) =~ '\\$'
+            let lnum = lnum - 1
+        else
+            call cursor(lnum, 1)
+            let maybe_lnum = s:SearchParensPair()
+            if maybe_lnum < 1
+                return lnum
+            else
+                let lnum = maybe_lnum
+            endif
+        endif
+    endwhile
+endfunction
+
+" Find the block starter that matches the current line
+function! s:BlockStarter(lnum, block_start_re)
+    let lnum = a:lnum
+    let maxindent = 10000       " whatever
+    while lnum > 1
+        let lnum = prevnonblank(lnum - 1)
+        if indent(lnum) < maxindent
+            if getline(lnum) =~ a:block_start_re
+                return lnum
+            else 
+                let maxindent = indent(lnum)
+                " It's not worth going further if we reached the top level
+                if maxindent == 0
+                    return -1
+                endif
+            endif
+        endif
+    endwhile
+    return -1
+endfunction
+                
+function! GetPythonIndent(lnum)
+
+    " First line has indent 0
+    if a:lnum == 1
+        return 0
+    endif
+    
+    " If we can find an open parenthesis/bracket/brace, line up with it.
+    call cursor(a:lnum, 1)
+    let parlnum = s:SearchParensPair()
+    if parlnum > 0
+        let parcol = col('.')
+        let closing_paren = match(getline(a:lnum), '^\s*[])}]') != -1
+        if match(getline(parlnum), '[([{]\s*$', parcol - 1) != -1
+            if closing_paren
+                return indent(parlnum)
+            else
+                return indent(parlnum) + &shiftwidth
+            endif
+        else
+            if closing_paren
+                return parcol - 1
+            else
+                return parcol
+            endif
+        endif
+    endif
+    
+    " Examine this line
+    let thisline = getline(a:lnum)
+    let thisindent = indent(a:lnum)
+
+    " If the line starts with 'elif' or 'else', line up with 'if' or 'elif'
+    if thisline =~ '^\s*\(elif\|else\)\>'
+        let bslnum = s:BlockStarter(a:lnum, '^\s*\(if\|elif\)\>')
+        if bslnum > 0
+            return indent(bslnum)
+        else
+            return -1
+        endif
+    endif
+        
+    " If the line starts with 'except' or 'finally', line up with 'try'
+    " or 'except'
+    if thisline =~ '^\s*\(except\|finally\)\>'
+        let bslnum = s:BlockStarter(a:lnum, '^\s*\(try\|except\)\>')
+        if bslnum > 0
+            return indent(bslnum)
+        else
+            return -1
+        endif
+    endif
+    
+    " Examine previous line
+    let plnum = a:lnum - 1
+    let pline = getline(plnum)
+    let sslnum = s:StatementStart(plnum)
+    
+    " If the previous line is blank, keep the same indentation
+    if pline =~ '^\s*$'
+        return -1
+    endif
+    
+    " If this line is explicitly joined, try to find an indentation that looks
+    " good. 
+    if pline =~ '\\$'
+        let compound_statement = '^\s*\(if\|while\|for\s.*\sin\|except\)\s*'
+        let maybe_indent = matchend(getline(sslnum), compound_statement)
+        if maybe_indent != -1
+            return maybe_indent
+        else
+            return indent(sslnum) + &sw * 2
+        endif
+    endif
+    
+    " If the previous line ended with a colon, indent relative to
+    " statement start.
+    if pline =~ ':\s*$'
+        return indent(sslnum) + &sw
+    endif
+
+    " If the previous line was a stop-execution statement or a pass
+    if getline(sslnum) =~ '^\s*\(break\|continue\|raise\|return\|pass\)\>'
+        " See if the user has already dedented
+        if indent(a:lnum) > indent(sslnum) - &sw
+            " If not, recommend one dedent
+            return indent(sslnum) - &sw
+        endif
+        " Otherwise, trust the user
+        return -1
+    endif
+
+    " In all other cases, line up with the start of the previous statement.
+    return indent(sslnum)
+endfunction
+au BufNewFile,BufRead *.cpp set syntax=cpp11
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = '--std=c++11'
