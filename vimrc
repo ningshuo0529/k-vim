@@ -759,3 +759,5 @@ endfunction
 au BufNewFile,BufRead *.cpp set syntax=cpp11
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = '--std=c++11'
+let g:flake8_max_line_length=99
+"call pathogen#infect()
